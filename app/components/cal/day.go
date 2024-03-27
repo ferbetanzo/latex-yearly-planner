@@ -52,7 +52,7 @@ func (d Day) Add(days int) Day {
 }
 
 func (d Day) WeekLink() string {
-	return hyper.Link(d.ref(), strconv.Itoa(d.Time.Day())+", "+d.Time.Weekday().String())
+	return hyper.Link(d.ref(), strconv.Itoa(d.Time.Day())+". "+d.Time.Weekday().String())
 }
 
 func (d Day) Breadcrumb(prefix string, leaf string, shorten bool) string {
@@ -148,7 +148,7 @@ func (d Day) Month() time.Month {
 	return d.Time.Month()
 }
 
-func (d Day) HeadingMOS(prefix, leaf string) string {
+func (d Day) HeadingMOS(prefix, leaf string, title string, subtitle string) string {
 	day := strconv.Itoa(d.Time.Day())
 	if len(leaf) > 0 {
 		day = hyper.Link(d.ref(), day)
@@ -178,6 +178,11 @@ func (d Day) HeadingMOS(prefix, leaf string) string {
 		r2 = append(r2, "")
 	}
 
+	rr := "l"
+	//r1 = append(r1, tex.Multirow(2, tex.ResizeBoxW(`\myLenHeaderResizeBox`, "\\hyperlink{}{"+title+"}")))
+	r1 = append(r1, tex.Bold(title))
+	r2 = append(r2, subtitle)
+
 	contents := strings.Join(r1, ` & `) + `\\` + "\n" + strings.Join(r2, ` & `)
-	return tex.Hypertarget(prefix+d.ref(), "") + tex.Tabular("@{}"+ll+"l|l"+rl, contents)
+	return tex.Hypertarget(prefix+d.ref(), "") + tex.Tabular("@{}"+ll+"l|l"+rl+rr, contents)
 }

@@ -1,4 +1,4 @@
-addlasthalfhour: false
+#addlasthalfhour: false
 
 layout:
   paper:
@@ -11,7 +11,7 @@ layout:
 
   numbers:
     weeklylines: 10
-    dailynotes: 24
+    #dailynotes: 20
     dotwidthtwothirds: 19
     dotwidthfull: 29
 

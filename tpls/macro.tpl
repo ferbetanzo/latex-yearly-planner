@@ -9,9 +9,13 @@
 \newcommand{\myNumArrayStretch}{ {{- $numbers.ArrayStretch -}} }
 \newcommand{\myNumQuarterlyLines}{ {{- $numbers.QuarterlyLines -}} }
 \newcommand{\myNumDotHeightFull}{ {{- $numbers.DotHeightFull -}} }
+\newcommand{\myNumDotNotesHeightFull}{ {{- $numbers.DotNotesHeightFull -}} }
 \newcommand{\myNumDotWidthFull}{ {{- $numbers.DotWidthFull -}} }
 \newcommand{\myNumDotWidthTwoThirds}{ {{- $numbers.DotWidthTwoThirds -}} }
 \newcommand{\myNumWeeklyLines}{ {{- $numbers.WeeklyLines -}} }
+\newcommand{\myNumWeeklyReflectGoals}{ {{- $numbers.WeeklyReflectGoals -}} }
+\newcommand{\myNumWeeklyReflectGood}{ {{- $numbers.WeeklyReflectGood -}} }
+\newcommand{\myNumWeeklyReflectBad}{ {{- $numbers.WeeklyReflectBad -}} }
 \newcommand{\myNumDailyTodos}{ {{- $numbers.DailyTodos -}} }
 \newcommand{\myNumDailyNotes}{ {{- $numbers.DailyNotes -}} }
 \newcommand{\myNumDailyBottomHour}{ {{- $numbers.DailyBottomHour -}} }
@@ -19,6 +23,7 @@
 \newcommand{\myNumDailyDiaryGoals}{ {{- $numbers.DailyDiaryGoals -}} }
 \newcommand{\myNumDailyDiaryGrateful}{ {{- $numbers.DailyDiaryGrateful -}} }
 \newcommand{\myNumDailyDiaryBest}{ {{- $numbers.DailyDiaryBest -}} }
+\newcommand{\myNumDailyDiaryImprove}{ {{- $numbers.DailyDiaryImprove -}} }
 \newcommand{\myNumDailyDiaryLog}{ {{- $numbers.DailyDiaryLog -}} }
 \newcommand{\myNumDailyPersonal}{ {{- $numbers.DailyPersonal -}} }
 \newcommand{\myNumTodoLinesInTodoPage}{ {{- $numbers.TodoLinesInTodoPage -}} }
@@ -52,6 +57,7 @@
 \setlength{\myLenTriColSep}{ {{- $lengths.TriColSep -}} }
 \setlength{\myLenTriCol}{\dimexpr.333\linewidth-.667\myLenTriColSep}
 \setlength{\myLenNotesIndexCellHeight}{ {{- $lengths.NotesIndexCellHeight -}} }
+\newcommand{\myLenNotesIndexCellScale}{ {{- $lengths.NotesIndexCellScale -}} }
 \setlength{\myLenHeaderResizeBox}{ {{- $lengths.HeaderResizeBox -}} }
 \setlength{\myLenHeaderSideQuartersWidth}{ {{- $lengths.HeaderSideQuartersWidth -}} }
 \setlength{\myLenHeaderSideMonthsWidth}{ {{- $lengths.HeaderSideMonthsWidth -}} }
@@ -75,8 +81,9 @@
 
 \newcommand{\myTodo}{\myLineHeightButLine$\square$\myLinePlain}
 \newcommand{\myTodoLineGray}{\myLineHeightButLine$\square$\myLineGray}
+\newcommand{\myWeeklyReflectLineGray}[1]{\myLineHeightButLine${#1}$\myLineGray}
 
-\newcommand{\myDotGrid}[2]{\leavevmode\multido{\dC=0mm+5mm}{#1}{\multido{\dR=0mm+5mm}{#2}{\put(\dR,\dC){\circle*{0.1}}}}}
+\newcommand{\myDotGrid}[2]{\leavevmode\multido{\dC=0mm+5mm}{#1}{\multido{\dR=0mm+5mm}{#2}{\put(\dR,\dC){\color{\myColorLightGray}\circle*{0.1}}}}}
 
 \newcommand{\myMash}[3][]{
   {{- if $.Cfg.Dotted -}} \vskip\myLenLineHeightButLine#1\myDotGrid{#2}{#3} {{- else -}} \Repeat{#2}{\myLineGrayVskipTop} {{- end -}}
@@ -89,3 +96,5 @@
   \dimexpr\pagegoal-\pagetotal-\lineskip-9.4pt\relax
   \fi%
 }
+
+\newcommand{\mySunday}{Sunday}

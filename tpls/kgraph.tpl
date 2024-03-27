@@ -1,0 +1,10 @@
+\usepackage{pstricks,pst-node,pst-plot}
+\newcommand{\K}[1]{
+   \psset{linewidth=0.15pt}
+    \begin{pspicture}(-3,-3)(3,3)
+        \SpecialCoor
+        \degrees[#1]
+         \multido{\n=1+1}{#1}{\multido{\i=1+1}{#1}{\psline[linecolor=orange](3;\n)(3;\i)}}
+   \end{pspicture}
+}
+\K{24}

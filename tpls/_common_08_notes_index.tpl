@@ -1,3 +1,4 @@
+\renewcommand{\arraystretch}{\myLenNotesIndexCellScale}
 \begin{tabularx}{\linewidth}{l|X}
   \arrayrulecolor{\myColorGray}
 {{ range $note := .Body.Notes }}

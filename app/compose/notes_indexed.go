@@ -45,7 +45,27 @@ func NotesIndexed(cfg config.Config, tpls []string) (page.Modules, error) {
 					"Extra2": extra2(cfg.ClearTopRightCorner, false, false, nil, idxPage+1),
 				},
 			})
+
+			for i:=0; i<cfg.Layout.Numbers.NotesPagesPerNote-1; i++ {
+				modules = append(modules, page.Module{
+					Cfg: cfg,
+					Tpl: tpls[1],
+					Body: map[string]interface{}{
+						"Note":         nt,
+						"BreadCrumb":   nt.Breadcrumb(),
+						"HeadingMOS":   nt.HeadingMOS(idxPage),
+						"SideQuarters": year.SideQuarters(0),
+						"SideMonths":   year.SideMonths(0),
+						"Extra": nt.
+							PrevNext(cfg.Layout.Numbers.NotesOnPage * cfg.Layout.Numbers.NotesIndexPages).
+							WithTopRightCorner(cfg.ClearTopRightCorner),
+						"Extra2": extra2(cfg.ClearTopRightCorner, false, false, nil, idxPage+1),
+					},
+				})
+			}
 		}
+
+
 	}
 
 	return modules, nil

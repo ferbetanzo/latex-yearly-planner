@@ -48,6 +48,12 @@
               ifmtarg
               extsizes
               dashrule
+              #pstricks
+              #pstricks-add
+              #pst-node
+              #pst-plot
+              #pst-tools
+              #pst-arrow
               ;
           })
         ];

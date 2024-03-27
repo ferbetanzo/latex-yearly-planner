@@ -22,7 +22,22 @@ func DailyStuff(prefix, leaf string) func(cfg config.Config, tpls []string) (pag
 						if day.Time.IsZero() {
 							continue
 						}
+						weekday := int(day.Time.Weekday())
+						var title, subtitle string
 
+						if leaf == "Notes" {
+							title = "Notes"
+							subtitle = "of the day"
+						}
+						if leaf == "Reflect" {
+							if weekday == 0 {
+								title = "Reflection"
+								subtitle = "of the week"
+							} else {
+								title = "Reflection"
+								subtitle = "of the day"
+							}
+						}
 						modules = append(modules, page.Module{
 							Cfg: cfg,
 							Tpl: tpls[0],
@@ -32,8 +47,9 @@ func DailyStuff(prefix, leaf string) func(cfg config.Config, tpls []string) (pag
 								"Month":        month,
 								"Week":         week,
 								"Day":          day,
+								"Weekday":      weekday,
 								"Breadcrumb":   day.Breadcrumb(prefix, leaf, cfg.ClearTopRightCorner && len(leaf) > 0),
-								"HeadingMOS":   day.HeadingMOS(prefix, leaf),
+								"HeadingMOS":   day.HeadingMOS(prefix, leaf, title, subtitle),
 								"SideQuarters": year.SideQuarters(day.Quarter()),
 								"SideMonths":   year.SideMonths(day.Month()),
 								"Extra":        day.PrevNext(prefix).WithTopRightCorner(cfg.ClearTopRightCorner),

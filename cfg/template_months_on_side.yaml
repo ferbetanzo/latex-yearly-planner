@@ -53,3 +53,9 @@ pages:
         tpls:
           - mos_08_notes_index.tpl
           - mos_09_notes.tpl
+
+  - name: review_prompts
+    renderblocks:
+      - funcname: review_prompts
+        tpls:
+          - mos_07_daily_notes.tpl

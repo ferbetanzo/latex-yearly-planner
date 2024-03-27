@@ -35,14 +35,15 @@ func (p Notes) Breadcrumb(year, idx int) string {
 func (p Notes) HeadingMOS(page, pages int) string {
 	var out string
 
+	anglesize := `\dimexpr\myLenHeaderResizeBox-0.86pt`
 	if page > 1 {
-		out += tex.Hyperlink(p.ref(page-1), tex.ResizeBoxW(`\myLenHeaderResizeBox`, `$\langle$`)) + " "
+		out += tex.Hyperlink(p.ref(page-1), tex.ResizeBoxW(anglesize, `$\langle$`)) + " "
 	}
 
-	out += tex.Hypertarget(p.ref(page), "") + tex.ResizeBoxW(`\myLenHeaderResizeBox`, `Index Notes`)
+	out += tex.Hypertarget(p.ref(page), "") + tex.ResizeBoxW(`\myLenHeaderResizeBox`, `Collections`)
 
 	if page < pages {
-		out += " " + tex.Hyperlink(p.ref(page+1), tex.ResizeBoxW(`\myLenHeaderResizeBox`, `$\rangle$`))
+		out += " " + tex.Hyperlink(p.ref(page+1), tex.ResizeBoxW(anglesize, `$\rangle$`))
 	}
 
 	return out
@@ -59,7 +60,7 @@ func (p Notes) ref(page int) string {
 }
 
 func (n Note) HyperLink() string {
-	return hyper.Link(n.ref(), fmt.Sprintf("%02d", n.Number))
+	return hyper.Link(n.ref(), fmt.Sprintf("C%02d", n.Number))
 }
 
 func (n Note) Breadcrumb() string {
@@ -80,22 +81,31 @@ func (n Note) PrevNext(notes int) header.Items {
 	items := header.Items{}
 
 	if n.Number > 1 {
-		items = append(items, header.NewTextItem("Note "+strconv.Itoa(n.Number-1)))
+		items = append(items, header.NewTextItem("Collection "+strconv.Itoa(n.Number-1)))
 	}
 
 	if n.Number < notes {
-		items = append(items, header.NewTextItem("Note "+strconv.Itoa(n.Number+1)))
+		items = append(items, header.NewTextItem("Collection "+strconv.Itoa(n.Number+1)))
 	}
 
 	return items
 }
 
 func (n Note) HeadingMOS(page int) string {
-	num := strconv.Itoa(n.Number)
+	//num := strconv.Itoa(n.Number)
 
-	return tex.Hypertarget(n.ref(), "") + tex.ResizeBoxW(`\myLenHeaderResizeBox`, `Note `+num+`\myDummyQ`)
+	return tex.Hypertarget(n.ref(), "") + tex.ResizeBoxW(`\myLenHeaderResizeBox`, `C`+fmt.Sprintf("%02d", n.Number)+`\myDummyQ`)
 }
 
 func (n Note) ref() string {
 	return "Note " + strconv.Itoa(n.Number)
+}
+
+func (n Note) promptRef(prompt string) string {
+	return "Prompt " + prompt
+
+}
+
+func (n Note) HeadingMOSPrompts(prompt string) string {
+	return tex.Hypertarget(n.promptRef(prompt), "") + tex.ResizeBoxW(`\myLenHeaderResizeBox`, ``+prompt+` prompts`)
 }

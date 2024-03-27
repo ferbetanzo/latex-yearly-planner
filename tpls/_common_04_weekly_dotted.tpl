@@ -25,5 +25,5 @@
 
 \parbox{\myLenTriCol}{ \myUnderline{ {{- $day7.WeekLink -}} }}%
 \hspace{\myLenTriColSep}%
-\parbox{\dimexpr2\myLenTriCol+\myLenTriColSep}{\myUnderline{Notes\myDummyQ}}
+\parbox{\dimexpr2\myLenTriCol+\myLenTriColSep}{\myUnderline{\textbf{Main areas to focus}\myDummyQ}}
 \myMash{\myNumWeeklyLines}{\myNumDotWidthFull}

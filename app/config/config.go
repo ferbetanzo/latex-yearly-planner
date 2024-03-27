@@ -73,6 +73,9 @@ type Numbers struct {
 	ArrayStretch        float64
 	QuarterlyLines      int
 	WeeklyLines         int
+	WeeklyReflectGoals  int
+	WeeklyReflectGood   int
+	WeeklyReflectBad    int
 	DailyTodos          int
 	DailyNotes          int
 	DailyPersonal       int
@@ -81,12 +84,15 @@ type Numbers struct {
 	DailyDiaryGoals     int
 	DailyDiaryGrateful  int
 	DailyDiaryBest      int
+	DailyDiaryImprove   int
 	DailyDiaryLog       int
 	TodoLinesInTodoPage int
 	IndexMeetingNotes   int
 	NotesIndexPages     int
 	NotesOnPage         int
+	NotesPagesPerNote   int
 	DotHeightFull       int
+	DotNotesHeightFull  int
 	DotWidthFull        int
 	DotWidthTwoThirds   int
 }

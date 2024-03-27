@@ -1,7 +1,7 @@
 calafterschedule: true
-addlasthalfhour: true
+addlasthalfhour: false
 
 layout:
   numbers:
     dailybottomhour: 9
-    dailytophour: 20
+    dailytophour: 22
